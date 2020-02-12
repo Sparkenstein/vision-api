@@ -42,4 +42,9 @@ npm install
 npm start
 ```
 
-Note that UI from "master" branch doesn't work, but you can view the UI at least. do Checkout both branches.
+> Note that UI from "master" branch doesn't work, but you can view the UI at least. do checkout both branches.
+
+## Improvements Needed
+
+-   Database integration, sqlite probably
+-   UI improvements
