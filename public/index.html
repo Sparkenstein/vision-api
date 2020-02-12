@@ -5,12 +5,26 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>Vision API demo</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="index.css" rel="stylesheet" />
 	</head>
 	<body>
 		<form name="fileUploadForm" method="POST" enctype="multipart/form-data">
-			<input type="file" name="file" />
+			<input type="file" accept="image/jpeg, image/png" name="file" />
 			<button type="submit">Submit</button>
 		</form>
+
+		<div class="container">
+			<div class="left">
+				<img id="source" />
+			</div>
+			<div class="loader hidden">Loading...</div>
+			<div class="right">
+				<textarea
+					readonly
+					style="width: 400px; height: 400px; border-radius: 4px; resize: none; padding: 15px;"
+				></textarea>
+			</div>
+		</div>
 		<script src="main.js"></script>
 	</body>
 </html>
