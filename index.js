@@ -1,33 +1,24 @@
-async function quickstart() {
-	// Imports the Google Cloud client library
-	const vision = require("@google-cloud/vision");
+"use strict";
+// Imports
+const express = require("express");
+const fileUploder = require("./core/fileUploader");
 
-	// Creates a client
-	const client = new vision.ImageAnnotatorClient();
+// constants
+const PORT = parseInt(process.env.PORT, 10) || 4000;
 
-	const fileName = "./resources/sentence.jpg";
+// Initialization
+const app = express();
 
-	const [result] = await client.documentTextDetection(fileName);
-	const fullTextAnnotation = result.fullTextAnnotation;
-	console.log(`Full text: ${fullTextAnnotation.text}`);
+// Middlewares
+// app.use(express.static(__dirname + "/public"));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-	fullTextAnnotation.pages.forEach(page => {
-		page.blocks.forEach(block => {
-			console.log(`\nBlock confidence: ${block.confidence}`);
-			block.paragraphs.forEach(paragraph => {
-				console.log(`Paragraph confidence: ${paragraph.confidence}`);
-				paragraph.words.forEach(word => {
-					const wordText = word.symbols.map(s => s.text).join("");
-					console.log(`Word text: ${wordText}`);
-					console.log(`Word confidence: ${word.confidence}`);
-					word.symbols.forEach(symbol => {
-						console.log(`Symbol text: ${symbol.text}`);
-						console.log(`Symbol confidence: ${symbol.confidence}`);
-					});
-				});
-			});
-		});
-	});
-}
+// Routes
+app.post("/upload", (req, res) => {
+	fileUploder(req, res);
+});
 
-quickstart();
+app.listen(PORT, () => {
+	console.log(`Server started at http://localhost:${PORT}`);
+});
