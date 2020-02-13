@@ -2,9 +2,11 @@
 
 const multer = require("multer");
 const crypto = require("crypto");
-const id = crypto.randomBytes(4).toString("hex");
 const path = require("path");
 
+const id = crypto.randomBytes(4).toString("hex");
+
+// Custom disk storage
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
 		cb(null, "uploads");
