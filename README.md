@@ -48,3 +48,4 @@ npm start
 
 -   Database integration, sqlite probably
 -   UI improvements
+-   Get borders and plot boxes around original text
